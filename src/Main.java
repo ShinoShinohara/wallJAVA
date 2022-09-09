@@ -1,5 +1,3 @@
-import Supplies.Alvenaria;
-import Supplies.Emboco;
 import Supplies.Muro;
 
 import java.util.Scanner;
@@ -8,8 +6,8 @@ public class Main {
     public static void main(String[] arg) {
         try (Scanner scan = new Scanner(System.in)) {
 
-            double altura;
             double largura;
+            double altura;
 
             double valorPedreiro;
             double valorServente;
@@ -32,16 +30,11 @@ public class Main {
             System.out.print("Digite valor argamassa: ");
             valorArgamassa = scan.nextDouble();
 
-            Muro muroA = new Alvenaria(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
-            Muro muroE = new Emboco(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
-            System.out.print("AREA A ");
-            System.out.println(muroA.getArea());
-            System.out.print("AREA E ");
-            System.out.println(muroE.getArea());
+            Muro muro = new Muro(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
 //            ALVENARIA
-            System.out.println(muroA.CalcularValor());
+            System.out.println(muro.CalcularAlvenaria());
 //            EMBOCO
-            System.out.println(muroE.CalcularValor());
+            System.out.println(muro.CalcularEmboco());
         }
     }
 }

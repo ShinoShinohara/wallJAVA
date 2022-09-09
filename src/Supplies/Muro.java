@@ -1,10 +1,9 @@
 package Supplies;
 
-public abstract class Muro {
-    private double altura;
+public class Muro {
     private double largura;
+    private double altura;
     private double area;
-
     private double valorPedreiro;
     private double valorServente;
     private double valorTijolo;
@@ -21,6 +20,30 @@ public abstract class Muro {
     }
 
     public Muro() {
+    }
+
+    public double getLargura() {
+        return largura;
+    }
+
+    public void setLargura(double largura) {
+        this.largura = largura;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public void setArea(double area) {
+        this.area = area;
     }
 
     public double getValorPedreiro() {
@@ -55,29 +78,25 @@ public abstract class Muro {
         this.valorArgamassa = valorArgamassa;
     }
 
-    public double getArea() {
-        return area;
+    public double CalcularAlvenaria() {
+        double pedreiro = 0.8;
+        double p = pedreiro * getValorPedreiro();
+        double servente = 0.8;
+        double s = servente * getValorServente();
+        double tijolos = 21;
+        double t = tijolos * getValorTijolo();
+        double argamassa = 10;
+        double a = argamassa * getValorArgamassa();
+        return (p + s + t + a) * getArea();
     }
 
-    public void setArea(double largura, double altura) {
-        this.area = largura * altura;
+    public double CalcularEmboco() {
+        double pedreiro = 0.5;
+        double p = pedreiro * getValorPedreiro();
+        double servente = 0.5;
+        double s = servente * getValorServente();
+        double argamassa = 40;
+        double a = argamassa * getValorArgamassa();
+        return (p + s + a) * getArea();
     }
-
-    public double getLargura() {
-        return largura;
-    }
-
-    public void setLargura(double largura) {
-        this.largura = largura;
-    }
-
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        this.altura = altura;
-    }
-
-    public abstract double CalcularValor();
 }
