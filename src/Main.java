@@ -1,50 +1,47 @@
-import java.util.Scanner;
+import Supplies.Alvenaria;
+import Supplies.Emboco;
 import Supplies.Muro;
+
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] arg) {
-        Muro muro = new Muro();
         try (Scanner scan = new Scanner(System.in)) {
+
+            double altura;
+            double largura;
+
+            double valorPedreiro;
+            double valorServente;
+            double valorTijolo;
+            double valorArgamassa;
+
+//            MURO
             System.out.print("Digite a largura: ");
-            muro.setLargura(scan.nextDouble());
+            largura = scan.nextDouble();
             System.out.print("Digite a Altura: ");
-            muro.setAltura(scan.nextDouble());
-            muro.setArea(muro.getLargura(), muro.getAltura());
-            System.out.println("Area: " + muro.getArea());
-//            System.out.print("Digite valor pedreiro: ");
-//            double pedreiro = scan.nextDouble();
-//            System.out.print("Digite valor servente: ");
-//            double servente = scan.nextDouble();
-//            System.out.print("Digite valor tijolos: ");
-//            double tijolos = scan.nextDouble();
-//            System.out.print("Digite valor argamassa: ");
-//            double argamassa = scan.nextDouble();
-//            double alvenaria = CalcularAlvenaria(area, pedreiro, servente, tijolos, argamassa);
-//            System.out.println("Alvenaria: " + alvenaria);
-//            double emboco = CalcularEmboco(area, pedreiro, servente, argamassa);
-//            System.out.println("Emboco: " + emboco);
-//            double custo = CalcularCusto(alvenaria, emboco);
-//            System.out.println("Custo: " + custo);
-//            System.out.print("Digite margem de lucro: ");
-//            double margem = scan.nextDouble();
-//            double lucro = CalcularLucro(margem, custo);
-//            System.out.println("Lucro: " + lucro);
+            altura = scan.nextDouble();
+
+//            CUSTOS
+            System.out.print("Digite valor pedreiro: ");
+            valorPedreiro = scan.nextDouble();
+            System.out.print("Digite valor servente: ");
+            valorServente = scan.nextDouble();
+            System.out.print("Digite valor tijolos: ");
+            valorTijolo = scan.nextDouble();
+            System.out.print("Digite valor argamassa: ");
+            valorArgamassa = scan.nextDouble();
+
+            Muro muroA = new Alvenaria(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
+            Muro muroE = new Emboco(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
+            System.out.print("AREA A ");
+            System.out.println(muroA.getArea());
+            System.out.print("AREA E ");
+            System.out.println(muroE.getArea());
+//            ALVENARIA
+            System.out.println(muroA.CalcularValor());
+//            EMBOCO
+            System.out.println(muroE.CalcularValor());
         }
     }
-
-//    static double CalcularAlvenaria(double area, double pedreiro, double servente, double tijolos, double argamassa) {
-//        return area * (pedreiro * 0.8 + servente * 0.8 + tijolos * 21 + argamassa * 10);
-//    }
-//
-//    private static double CalcularEmboco(double area, double pedreiro, double servente, double argamassa) {
-//        return 2 * area * (pedreiro * 0.5 + servente * 0.5 + argamassa * 40.0);
-//    }
-//
-//    private static double CalcularCusto(double alvenaria, double emboco) {
-//        return alvenaria + emboco;
-//    }
-//
-//    private static double CalcularLucro(double margem, double custo) {
-//        return custo + custo * margem / 100;
-//    }
 }
