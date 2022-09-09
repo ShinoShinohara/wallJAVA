@@ -9,41 +9,50 @@ public record Muro(double area, double valorPedreiro, double valorServente, doub
         return x / 100;
     }
 
-    public double CalcularAlvenaria() {
-        System.out.println("Preço para 1 m² de Alvenaria: ");
-        double pedreiro = 0.80;
-        double p = RoundUp(pedreiro * valorPedreiro());
-        System.out.println("Custo com Pedreiros: R$ " + String.format("%.2f", p));
-        double servente = 0.80;
-        double s = RoundUp(servente * valorServente());
-        System.out.println("Custo com Serventes: R$ " + String.format("%.2f", s));
-        double tijolos = 21.00;
-        double t = RoundUp(tijolos * valorTijolo());
-        System.out.println("Custo com Tijolos: R$ " + String.format("%.2f", t));
-        double argamassa = 10.00;
-        double a = RoundUp(argamassa * valorArgamassa());
-        System.out.println("Custo com Argamassa: R$ " + String.format("%.2f", a));
-        System.out.println("Custo total Alvenaria: R$ " + String.format("%.2f", RoundUp((p + s + t + a) * area())) + "\n");
-        return RoundUp((p + s + t + a) * area());
+    public double CustoPedreiro() {
+        double pedreiroA = 0.80;
+        double pedreiroE = 0.50;
+        System.out.println("    - Pedreiro em horas: " + RoundUp((pedreiroA + (2 * pedreiroE)) * area()));
+        return RoundUp((pedreiroA + (2 * pedreiroE)) * area() * valorPedreiro());
     }
 
-    public double CalcularEmboco() {
-        System.out.println("Preço para 2 m² de Emboco: ");
-        double pedreiro = 0.50;
-        double p = RoundUp(pedreiro * valorPedreiro());
-        System.out.println("Custo com Pedreiros: R$ " + String.format("%.2f", p * 2));
-        double servente = 0.50;
-        double s = RoundUp(servente * valorServente());
-        System.out.println("Custo com Serventes: R$ " + String.format("%.2f", s * 2));
-        double argamassa = 40.00;
-        double a = RoundUp(argamassa * valorArgamassa());
-        System.out.println("Custo com Argamassa: R$ " + String.format("%.2f", a * 2));
-        System.out.println("Custo total Emboco: R$ " + String.format("%.2f", RoundUp(2 * (p + s + a) * area())) + "\n");
-        return RoundUp(2 * (p + s + a) * area());
+    public double CustoServente() {
+        double serventeA = 0.80;
+        double serventeE = 0.50;
+        System.out.println("    - Servente em horas: " + RoundUp((serventeA + (2 * serventeE)) * area()));
+        return RoundUp((serventeA + (2 * serventeE)) * area() * valorServente());
     }
 
-    public double CalcularLucro(double valorAlvenaria, double valorEmboco, double porcentagem) {
-        double total = valorAlvenaria + valorEmboco;
+    public double CustoTijolo() {
+        double tijolosA = 21.00;
+        System.out.println("    - Unidades de tijolos: " + RoundUp((tijolosA) * area()));
+        return RoundUp((tijolosA) * area() * valorTijolo());
+    }
+
+    public double CustoArgamassa() {
+        double argamassaA = 10.00;
+        double argamassaE = 40.00;
+        System.out.println("    - Litros de argamassa: " + RoundUp((argamassaA + (2 * argamassaE)) * area()) + "\n");
+        return RoundUp((argamassaA + (2 * argamassaE)) * area() * valorArgamassa());
+    }
+
+    public double CalcularTotal() {
+
+        double p = CustoPedreiro();
+        double s = CustoServente();
+        double t = CustoTijolo();
+        double a = CustoArgamassa();
+        double total = p + s + t + a;
+
+        System.out.println("    - Custo com Pedreiros: R$ " + String.format("%.2f", p));
+        System.out.println("    - Custo com Serventes: R$ " + String.format("%.2f", s));
+        System.out.println("    - Custo com Tijolos: R$ " + String.format("%.2f", t));
+        System.out.println("    - Custo com Argamassa: R$ " + String.format("%.2f", a) + "\n");
+
+        return total;
+    }
+
+    public double CalcularLucro(double total, double porcentagem) {
         System.out.println("\nLucro desejado: R$ " + String.format("%.2f", RoundUp(total * (porcentagem / 100.00))));
         return RoundUp(total + total * (porcentagem / 100.00));
     }

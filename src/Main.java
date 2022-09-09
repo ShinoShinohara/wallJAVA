@@ -14,9 +14,8 @@ public class Main {
             double valorTijolo;
             double valorArgamassa;
 
-            double valorAlvenaria;
-            double valorEmboco;
-            
+            double total;
+
 //            MURO
             System.out.print("Digite o comprimento em metros: ");
             comprimento = scan.nextDouble();
@@ -37,16 +36,13 @@ public class Main {
 //
             System.out.println("\n*Para executar 1 m² de MURO são necessários 1 m² de ALVENARIA e 2 m² de EMBOCO massa única*\n");
 
-//            ALVENARIA
-            valorAlvenaria = muro.CalcularAlvenaria();
-//            EMBOCO
-            valorEmboco = muro.CalcularEmboco();
 //            TOTAL
-            System.out.println("Total: R$ " + String.format("%.2f", muro.RoundUp(valorEmboco + valorAlvenaria)) + "\n");
+            total = muro.CalcularTotal();
+            System.out.println("Total: R$ " + String.format("%.2f", total) + "\n");
 
 //            LUCRO
             System.out.print("Digite o lucro desejado em porcentagem: ");
-            System.out.println("Total a cobrar: R$ " + String.format("%.2f", muro.CalcularLucro(valorAlvenaria, valorEmboco, scan.nextDouble())));
+            System.out.println("Total a cobrar: R$ " + String.format("%.2f", muro.CalcularLucro(total, scan.nextDouble())));
         }
     }
 }
