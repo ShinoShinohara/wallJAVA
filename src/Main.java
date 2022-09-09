@@ -17,20 +17,20 @@ public class Main {
 //            MURO
             System.out.print("Digite a largura: ");
             largura = scan.nextDouble();
-            System.out.print("Digite a Altura: ");
+            System.out.print("Digite a altura: ");
             altura = scan.nextDouble();
 
 //            CUSTOS
-            System.out.print("Digite valor pedreiro: ");
+            System.out.print("Digite o preço do pedreiro: ");
             valorPedreiro = scan.nextDouble();
-            System.out.print("Digite valor servente: ");
+            System.out.print("Digite o preço do servente: ");
             valorServente = scan.nextDouble();
-            System.out.print("Digite valor tijolos: ");
+            System.out.print("Digite o preço dos tijolos: ");
             valorTijolo = scan.nextDouble();
-            System.out.print("Digite valor argamassa: ");
+            System.out.print("Digite o preço da argamassa: ");
             valorArgamassa = scan.nextDouble();
 
-            Muro muro = new Muro(largura, altura, largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
+            Muro muro = new Muro(largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
 //            ALVENARIA
             System.out.println(muro.CalcularAlvenaria());
 //            EMBOCO
