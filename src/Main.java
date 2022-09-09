@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] arg) {
         try (Scanner scan = new Scanner(System.in)) {
 
-            double largura;
+            double comprimento;
             double altura;
 
             double valorPedreiro;
@@ -14,27 +14,39 @@ public class Main {
             double valorTijolo;
             double valorArgamassa;
 
+            double valorAlvenaria;
+            double valorEmboco;
+            
 //            MURO
-            System.out.print("Digite a largura: ");
-            largura = scan.nextDouble();
-            System.out.print("Digite a altura: ");
+            System.out.print("Digite o comprimento em metros: ");
+            comprimento = scan.nextDouble();
+            System.out.print("Digite a altura em metros: ");
             altura = scan.nextDouble();
 
 //            CUSTOS
-            System.out.print("Digite o preço do pedreiro: ");
+            System.out.print("\nDigite o preço do pedreiro: R$ ");
             valorPedreiro = scan.nextDouble();
-            System.out.print("Digite o preço do servente: ");
+            System.out.print("Digite o preço do servente: R$ ");
             valorServente = scan.nextDouble();
-            System.out.print("Digite o preço dos tijolos: ");
+            System.out.print("Digite o preço dos tijolos: R$ ");
             valorTijolo = scan.nextDouble();
-            System.out.print("Digite o preço da argamassa: ");
+            System.out.print("Digite o preço da argamassa: R$ ");
             valorArgamassa = scan.nextDouble();
 
-            Muro muro = new Muro(largura * altura, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
+            Muro muro = new Muro(Math.ceil((comprimento * altura) * 100) / 100, valorPedreiro, valorServente, valorTijolo, valorArgamassa);
+//
+            System.out.println("\n*Para executar 1 m² de MURO são necessários 1 m² de ALVENARIA e 2 m² de EMBOCO massa única*\n");
+
 //            ALVENARIA
-            System.out.println(muro.CalcularAlvenaria());
+            valorAlvenaria = muro.CalcularAlvenaria();
 //            EMBOCO
-            System.out.println(muro.CalcularEmboco());
+            valorEmboco = muro.CalcularEmboco();
+//            TOTAL
+            System.out.println("Total: R$ " + String.format("%.2f", muro.RoundUp(valorEmboco + valorAlvenaria)) + "\n");
+
+//            LUCRO
+            System.out.print("Digite o lucro desejado em porcentagem: ");
+            System.out.println("Total a cobrar: R$ " + String.format("%.2f", muro.CalcularLucro(valorAlvenaria, valorEmboco, scan.nextDouble())));
         }
     }
 }
